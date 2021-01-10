@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "forever start ./forever.json",
+    "start": "forever start ./src/js/server.js",
     "list": "forever list",
     "restart": "forever restart",
     "stop": "forever stop netology",
-    "watch": "forever start -w ./forever.json",
+    "watch": "forever start ./forever.json",
     "startclient": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint .",
