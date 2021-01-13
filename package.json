@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "forever start ./src/js/server.js",
     "list": "forever list",
     "restart": "forever restart",
