@@ -55,4 +55,12 @@ app.use(async (ctx) => {
 });
 
 // eslint-disable-next-line no-unused-vars
-const server = http.createServer(app.callback()).listen(7070);
+let port;
+if (Object.keys(process.env).includes('PORT')) {
+  port = process.env.PORT;
+} else {
+  port = 7070;
+}
+
+// app.listen(PORT, () => console.log(`Koa server has been started on port ${PORT} ...`));
+const server = http.createServer(app.callback()).listen(port);

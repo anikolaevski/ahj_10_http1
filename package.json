@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "forever start ./src/js/server.js",
-    "watch": "forever start -w ./src/js/server.js"
+    "start": "forever ./src/js/server.js",
+    "watch": "forever -w ./src/js/server.js"
   },
   "repository": {
     "url": "https://github.com/anikolaevski/ahj_10_http1.git",
