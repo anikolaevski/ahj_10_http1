@@ -63,4 +63,4 @@ if (Object.keys(process.env).includes('PORT')) {
 }
 
 // app.listen(PORT, () => console.log(`Koa server has been started on port ${PORT} ...`));
-const server = http.createServer(app.callback()).listen(port);
+const server = http.createServer(app.listen(port, () => console.log(`Koa server has been started on port ${port} ...`)));
