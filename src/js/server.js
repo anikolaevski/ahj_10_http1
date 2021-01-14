@@ -10,8 +10,12 @@ app.use(koaBody({
   urlencoded: true,
 }));
 
+// const headers = { 'Access-Control-Allow-Origin': '*' };
+
+
 app.use(async (ctx) => {
   // const { method } = ctx.request.querystring;
+  ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
   const { body } = ctx.request;
   const methodArr = ctx.request.url.split('&');
   const method = decodeURIComponent(ctx.request.url).replace('/?method=', '');
@@ -20,7 +24,7 @@ app.use(async (ctx) => {
 
   switch (method) {
     case 'allTickets':
-      ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
+      // ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
       ctx.response.body = tickets;
       // eslint-disable-next-line no-console
       // console.log('allTickets');
@@ -38,7 +42,7 @@ app.use(async (ctx) => {
     case 'createTicket':
       // eslint-disable-next-line no-console
       console.log(body);
-      ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
+      // ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
       // eslint-disable-next-line no-case-declarations
       const ticket = new Ticket({
         name: body.name,
