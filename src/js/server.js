@@ -59,15 +59,13 @@ app.use(async (ctx) => {
       return;
 
     case 'setStatus':
-      let tick4State = {};
       if (body.id) {
-        const ticketIndex = tickets.findIndex((o) => o.id === body.id);
-        if (ticketIndex) {
-          tickets[ticketIndex].status = body.status;
-          tick4State = tickets[ticketIndex];
+        const tick2 = tickets.find((o) => o.id === body.id);
+        if (tick2) {
+          tick2.status = body.status;
         }
       }
-      ctx.response.body = tick4State;
+      ctx.response.body = {};
       return;
 
     case 'delete':
