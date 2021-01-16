@@ -73,6 +73,7 @@ app.use(async (ctx) => {
       console.log(body);
       if (body.id) {
         const ticketIndex = tickets.findIndex((o) => o.id === body.id);
+        console.log('ticketIndex=,', ticketIndex);
         if (ticketIndex) {
           tickets.splice(ticketIndex, 1);
         }
