@@ -70,6 +70,7 @@ app.use(async (ctx) => {
       return;
 
     case 'delete':
+      console.log(body);
       if (body.id) {
         const ticketIndex = tickets.findIndex((o) => o.id === body.id);
         if (ticketIndex) {
