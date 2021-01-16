@@ -18,7 +18,7 @@ app.use(async (ctx) => {
   const methodArr = ctx.request.url.split('&');
   const method = decodeURIComponent(ctx.request.url).replace('/?method=', '');
   // eslint-disable-next-line no-console
-  console.log(`method=${method}`);
+  // console.log(`method=${method}`);
 
   switch (method) {
     case 'allTickets':
@@ -33,13 +33,11 @@ app.use(async (ctx) => {
       if (tick) {
         ctx.response.body = tick;
         // eslint-disable-next-line no-console
-        console.log(tick);
+        // console.log(tick);
       }
       return;
 
     case 'createTicket':
-      // eslint-disable-next-line no-console
-      console.log(body);
       // eslint-disable-next-line no-case-declarations
       let ticket;
       if (Object.keys(body).includes('id') && body.id) {
@@ -63,22 +61,16 @@ app.use(async (ctx) => {
         const tick2 = tickets.find((o) => o.id === body.id);
         if (tick2) {
           tick2.status = body.status;
-          console.log('status=', tick2.status);
         }
       }
       ctx.response.body = {};
       return;
 
     case 'delete':
-      console.log(body);
       if (body.id) {
         const ticketIndex = tickets.findIndex((o) => o.id === body.id);
-        console.log('ticketIndex=,', ticketIndex);
         if (ticketIndex >= 0) {
           tickets.splice(ticketIndex, 1);
-          console.log('tickets=', tickets);
-        // } else if (ticketIndex === 0) {
-        //   tickets.splice(0, 1);
         }
       }
       ctx.response.body = {};
