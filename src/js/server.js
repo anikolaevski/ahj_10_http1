@@ -65,7 +65,7 @@ app.use(async (ctx) => {
           tick.status = body.status;
         }
       }
-      ctx.response.body = ticket;
+      ctx.response.body = tick;
       return;
 
     case 'delete':
@@ -75,7 +75,7 @@ app.use(async (ctx) => {
           tickets.splice(ticketIndex, 1);
         }
       }
-      ctx.response.body = ticket;
+      ctx.response.body = {};
       return;
 
     // eslint-disable-next-line no-fallthrough
