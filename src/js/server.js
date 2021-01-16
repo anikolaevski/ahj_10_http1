@@ -42,7 +42,7 @@ app.use(async (ctx) => {
       console.log(body);
       // eslint-disable-next-line no-case-declarations
       let ticket;
-      if (body.id) {
+      if (Object.keys(body).includes('id') && body.id) {
         ticket = tickets.find((o) => o.id === body.id);
         if (ticket) {
           ticket.name = body.name;
