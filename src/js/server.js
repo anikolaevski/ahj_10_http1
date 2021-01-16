@@ -76,8 +76,8 @@ app.use(async (ctx) => {
         console.log('ticketIndex=,', ticketIndex);
         if (ticketIndex > 0) {
           tickets.splice(ticketIndex, 1);
-        } else if (ticketIndex == 0) {
-          tickets = {};
+        } else if (ticketIndex === 0) {
+          tickets.splice(0, tickets.length);
         }
       }
       ctx.response.body = {};
