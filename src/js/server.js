@@ -61,9 +61,10 @@ app.use(async (ctx) => {
     case 'setStatus':
       let tick4State = {};
       if (body.id) {
-        tick4State = tickets.find((o) => o.id === body.id);
-        if (tick4State) {
-          tick4State.status = body.status;
+        const ticketIndex = tickets.findIndex((o) => o.id === body.id);
+        if (ticketIndex) {
+          tickets[ticketIndex] = body.status;
+          tick4State = tickets[ticketIndex];
         }
       }
       ctx.response.body = tick4State;
