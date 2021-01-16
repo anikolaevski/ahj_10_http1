@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 const http = require('http');
 const Koa = require('koa');
 const koaBody = require('koa-body');
@@ -9,9 +10,6 @@ const tickets = [];
 app.use(koaBody({
   urlencoded: true,
 }));
-
-// const headers = { 'Access-Control-Allow-Origin': '*' };
-
 
 app.use(async (ctx) => {
   // const { method } = ctx.request.querystring;
@@ -26,17 +24,17 @@ app.use(async (ctx) => {
     case 'allTickets':
       // ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
       ctx.response.body = tickets;
-      // eslint-disable-next-line no-console
-      // console.log('allTickets');
       return;
-      // eslint-disable-next-line indent
-    // TODO: обработка остальных методов
 
     case 'ticketById':
       // eslint-disable-next-line no-case-declarations
       const id = methodArr[1].replace('id=', '');
-      // eslint-disable-next-line no-console
-      console.log(id);
+      const tick = tickets.find((o) => o.id === id);
+      if (tick) {
+        ctx.response.body = tick;
+        // eslint-disable-next-line no-console
+        console.log(tick);
+      }
       return;
 
     case 'createTicket':
@@ -56,6 +54,26 @@ app.use(async (ctx) => {
           description: body.description,
         });
         tickets.push(ticket);
+      }
+      ctx.response.body = ticket;
+      return;
+
+    case 'setStatus':
+      if (body.id) {
+        const tick = tickets.find((o) => o.id === body.id);
+        if (tick) {
+          tick.status = body.status;
+        }
+      }
+      ctx.response.body = ticket;
+      return;
+
+    case 'delete':
+      if (body.id) {
+        const ticketIndex = tickets.findIndex((o) => o.id === body.id);
+        if (ticketIndex) {
+          tickets.splice(ticketIndex, 1);
+        }
       }
       ctx.response.body = ticket;
       return;
