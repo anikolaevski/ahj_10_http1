@@ -63,7 +63,7 @@ app.use(async (ctx) => {
       if (body.id) {
         const ticketIndex = tickets.findIndex((o) => o.id === body.id);
         if (ticketIndex) {
-          tickets[ticketIndex] = body.status;
+          tickets[ticketIndex].status = body.status;
           tick4State = tickets[ticketIndex];
         }
       }
