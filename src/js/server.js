@@ -42,13 +42,21 @@ app.use(async (ctx) => {
     case 'createTicket':
       // eslint-disable-next-line no-console
       console.log(body);
-      // ctx.response.set({ 'Access-Control-Allow-Origin': '*' });
       // eslint-disable-next-line no-case-declarations
-      const ticket = new Ticket({
-        name: body.name,
-        description: body.description,
-      });
-      tickets.push(ticket);
+      let ticket;
+      if (body.id) {
+        ticket = tickets.find((o) => o.id === body.id);
+        if (ticket) {
+          ticket.name = body.name;
+          ticket.description = body.description;
+        }
+      } else {
+        ticket = new Ticket({
+          name: body.name,
+          description: body.description,
+        });
+        tickets.push(ticket);
+      }
       ctx.response.body = ticket;
       return;
 
