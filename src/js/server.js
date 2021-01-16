@@ -63,6 +63,7 @@ app.use(async (ctx) => {
         const tick2 = tickets.find((o) => o.id === body.id);
         if (tick2) {
           tick2.status = body.status;
+          console.log('status=', tick2.status);
         }
       }
       ctx.response.body = {};
